@@ -4,6 +4,9 @@
 成型的小demo
 
 
+这个demo加入了  redux-thunk中间件，在Store.js里面有配置，能够让action做异步操作的关键。
+在render dom的时候 尝试了 Object,keys(),
+
 
 
 
