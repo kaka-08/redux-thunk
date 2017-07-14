@@ -59,24 +59,34 @@ export const sampleAsyncAction = () => {
 }
 
 
+
+let nextSeqId = 0;
 export const fetchWeather = cityCode => {
   return dispatch => {
     const apiUrl = `/data/cityinfo/${cityCode}.html`;
+    
+    const seqId = ++nextSeqId;
 
-    dispatch(fetchWeatherStarted())
+    const dispatchIfValid = action=>{
+      if(seqId===nextSeqId){
+          return dispatch(action)
+      }
+    }
 
-    return fetch(apiUrl).then((response) => {
+    dispatchIfValid(fetchWeatherStarted())
+
+    fetch(apiUrl).then((response) => {
       if (response.status !== 200) {
         throw new Error('Fail to get response with status ' + response.status);
       }
 
       response.json().then((responseJson) => {
-        dispatch(fetchWeatherSuccess(responseJson.weatherinfo));
+        dispatchIfValid(fetchWeatherSuccess(responseJson.weatherinfo));
       }).catch((error) => {
-        dispatch(fetchWeatherFailure(error));
+        dispatchIfValid(fetchWeatherFailure(error));
       });
     }).catch((error) => {
-      dispatch(fetchWeatherFailure(error));
+      dispatchIfValid(fetchWeatherFailure(error));
     })
   };
 }
