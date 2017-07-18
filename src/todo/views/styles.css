@@ -94,3 +94,24 @@
 .todo-item .remove:hover {
   color: #af5b5e;
 }
+.fade-enter{
+  opacity: 0.01;
+  color:red;
+}
+.fade-enter.fade-enter-active{
+  opacity: 1;
+  color:green;
+  transition: opacity 500ms ease-in;
+  transition: color 500ms ease-in
+}
+
+.fade-leave{
+  opacity: 1;
+  color:green;
+}
+.fade-leave.fade-enter-active{
+  opacity: 0.01;
+  color: red;
+  transition: opacity 200ms ease-in;
+  transition: color 200ms ease-in
+}

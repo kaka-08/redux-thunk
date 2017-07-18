@@ -5,6 +5,7 @@ import CountDown from "./CountDown/index.jsx";
 import Weather from "./Weather/view";
 import CitySelector from "./Weather/CitySelector";
 import Objectkeys from "./Objectkeys/index.jsx";
+import TestMotion from "./Motion/index.js";
 
 
 class TodoApp extends Component{
@@ -28,6 +29,8 @@ class TodoApp extends Component{
                 <Weather />
                 <br />
                 <Objectkeys />
+                <br />
+                <TestMotion />
 	         </div>
 		)
 	}

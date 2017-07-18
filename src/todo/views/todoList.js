@@ -4,25 +4,36 @@ import {connect} from 'react-redux';
 import TodoItem from './todoItem.js';
 import {toggleTodo, removeTodo} from '../actions.js';
 import { selectVisibleTodos } from "./selector";
+import TransitionGroup from "react-addons-css-transition-group";
 
+/**
+* 初始化装载TransitionGroup时 如果 transitionName = "name",transitionXXXTimeout,
+* 它的每个子元素都会有一个name-XXX CSS类
+* 接着会有一个example-appear-active CSS类
+*/
 class TodoList extends Component{
 
   render(){
     const todos = this.props.todos;
     return(
-       <ul className="todo-list">
-          {
-            todos.map((item) => (
-              <TodoItem
-                key={item.id}
-                text={item.text}
-                completed={item.completed}
-                onToggle={() => this.props.onToggleTodo(item.id)}
-                onRemove={() => this.props.onRemoveTodo(item.id)}
-              />
-              ))
-          }
-          </ul>
+        <ul className="todo-list">
+          <TransitionGroup 
+           transitionName="fade" 
+           transitionEnterTimeout={500} 
+           transitionLeaveTimeout={300}>
+            {
+              todos.map((item) => (
+                <TodoItem
+                  key={item.id}
+                  text={item.text}
+                  completed={item.completed}
+                  onToggle={() => this.props.onToggleTodo(item.id)}
+                  onRemove={() => this.props.onRemoveTodo(item.id)}
+                />
+                ))
+            }
+          </TransitionGroup>
+        </ul>
       )
   }
 }

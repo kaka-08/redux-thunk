@@ -16,7 +16,10 @@ app.use(webpackDevMiddleware(compiler, {
   	colors: true
   }
 }));
-app.use('/', proxy({target: 'http://www.weather.com.cn', changeOrigin: true}));
+app.use('/', proxy({
+	target: 'http://www.weather.com.cn',
+	changeOrigin: true
+}));
 app.use(webpackHotMiddleware(compiler));
 app.listen(webpackConfig.devServer.port, function () {
   console.log(`Listening on port ${webpackConfig.devServer.port}!`);

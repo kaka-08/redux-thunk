@@ -16,8 +16,8 @@ class CitySelector extends Component{
    }
    
    handlerChange=(ev)=>{
-   	   const cityCode = ev.target.value;
-   	   this.props.onSelectCity(cityCode)
+   	  const cityCode = ev.target.value;
+   	  this.props.onSelectCity(cityCode)
    }
    
 
